@@ -4,10 +4,10 @@
 define('PathPrefix', '../controllers/');
 define('PathPostfix', 'Controller.php');
 
-//используемый шаблон лежит тут и по по умолчанию зовётся default
+//используемый графический шаблон (по умолчанию - default)
 $template = 'default';
 
-//определяем пути для обращения к шаблонам (файлы *.tpl)
+//определяем пути для обращения к графическим шаблонам (файлы *.tpl)
 define('TemplatePrefix', "../views/($template)");
 define('TemplatePostfix', '.tpl');
 
