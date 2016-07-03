@@ -1,10 +1,12 @@
-<html>
-<head>
-    <title>{$pageTitle}</title>
-</head>
+{*Левый столбец*}
+    <div id="leftColumn">
+        <div id="leftMenu">
+            <div class="menuCaption">Меню:</div>
+            пункт1 <br />
+            пункт2 <br />
+            пункт3 <br />
 
-<body>
-{$pageTitle}
-</body>
-
-</html>
+        </div>
+    </div>
+{*Центральный столбец*}
+<div id="centralColounm">centralColounm
