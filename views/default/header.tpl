@@ -8,3 +8,8 @@
 <div id="header">
     <h1>myshop - интернет-магазин</h1>
 </div>
+
+{include file='leftcolumn.tpl'}
+
+{*Центральный столбец*}
+<div id="centerColumn">centralColumn
