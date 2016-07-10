@@ -9,11 +9,11 @@
  * @param $controllerName название контроллера
  * @param string $actionName функция описания страницы
  */
-function loadPage ($smarty, $controllerName, $actionName = 'index') {
+function loadPage ($smarty, $mysqli, $controllerName, $actionName = 'index') {
     include_once PathPrefix . $controllerName . PathPostfix;
 
     $function = $actionName . 'Action';
-    $function($smarty);
+    $function($smarty, $mysqli);
 }
 
 /**
@@ -36,3 +36,5 @@ function d($value = null, $die = 1){
 
     if($die) die;
 }
+
+function createSmartyRsArray

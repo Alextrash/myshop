@@ -11,10 +11,11 @@ include_once '../models/CategoriesModel.php';
  * @param $smarty
  * @var TYPE_NAME $rsCategories
  */
-function indexAction($smarty){
-    $rsCategories = getAllMainCatsWithChildren();
-   
+function indexAction($smarty, $mysqli){
+    $rsCategories = getAllMainCatsWithChildren($mysqli);
+
     $smarty->assign('pageTitle', 'Главная страница');
+    $smarty->assign('rsCategories', $rsCategories);
 
     loadTemplate($smarty, 'header');
    // loadTemplate($smarty, 'index');
