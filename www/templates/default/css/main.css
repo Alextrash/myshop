@@ -10,11 +10,14 @@ body{
 #header{
     height: 70px;
     text-align: center;
+    background-color: blue;
 }
 
 #leftColumn{
+    float: left;
     width: 200px;
     text-align: left;
+    background-color: lightblue;
 }
 
 #leftMenu, #loginBox, #registerBox{
@@ -26,10 +29,12 @@ body{
     float: left;
     padding-left: 90px;
     text-align: center;
+    background-color: gainsboro;
 }
 
 #footer{
     clear: both;
+    background-color: darkgreen;
 }
 
 .menuCaption{
@@ -39,4 +44,10 @@ body{
 
 .cartBox{
     padding: 5px 0px 5px 0px;
+}
+
+#excuse{
+    text-align: center;
+    color: crimson;
+    font-size: 25px;
 }

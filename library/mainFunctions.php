@@ -37,4 +37,12 @@ function d($value = null, $die = 1){
     if($die) die;
 }
 
-function createSmartyRsArray
+function createSmartyRsArray($rs, $mysqli){
+    if( ! $rs) return false;
+
+    $smartyRs = array();
+    while($row = $rs->fetch_assoc()){
+        $smartyRs[] = $row;
+    }
+    return $smartyRs;
+}
