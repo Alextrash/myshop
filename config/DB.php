@@ -9,11 +9,11 @@ $dbname = "myshop";
 $dbuser = "root";
 $dbpasswd = "";
 
-$mysqli = new Mysqli($dblocation, $dbuser, $dbpasswd, $dbname);
+$mysqli = new mysqli($dblocation, $dbuser, $dbpasswd, $dbname);
 $mysqli->set_charset('utf8');
 
 if ($mysqli->connect_errno){
-    echo "Ошибка соединения с MySQL: " . $mysqli->connect_error;
+    echo "Ошибка соединения с MySQL # ". $mysqli->connect_errno . ". Описание:  " . $mysqli->connect_error;
     exit();
 }
 
