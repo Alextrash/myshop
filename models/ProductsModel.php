@@ -23,7 +23,7 @@ function getLastProducts($limit = null, $mysqli){
 
 function getProductsByCat($itemId, $mysqli){
     $itemId = intval($itemId);
-    
+
     $sql = "SELECT *
             FROM `products`
             WHERE `category_id` = '{$itemId}'
@@ -32,4 +32,21 @@ function getProductsByCat($itemId, $mysqli){
     $rs = $mysqli->query($sql);
 
     return createSmartyRsArray($rs, $mysqli);
+}
+
+/**
+ * Получение данных о продукте по его iD
+ * @param $itemId
+ * @param $mysqli
+ * @return mixed
+ */
+function getProductById($itemId, $mysqli){
+
+    $itemId = intval($itemId);
+    $sql = "SELECT *
+            FROM `products`
+            WHERE `id` = '{$itemId}'";
+
+    $rs = $mysqli->query($sql);
+    return $rs->fetch_assoc();
 }
