@@ -3,5 +3,6 @@
 <img src="/images/products/{$rsProduct['image']}" width="575">
 Стоимость: {$rsProduct['price']}
 
-<a id="addCart"_{$rsProduct['id']} href="#" onclick="addToCart({$rsProduct['id']})"; return false; alt="Добавить в корзину">Добавить в корзину</a>
+<a href="#" alt="Добавить в корзину" id="addCart_{$rsProduct['id']}" onclick="addToCart({$rsProduct['id']}); return false;">Добавить в корзину</a>
+{*<a id="removeCart_{$rsProduct['id']}" onclick="addToCart({$rsProduct['id']}); return false;" href="#" alt="Убрать из корзины">Убрать из корзины</a>*}
 <p>Описание<br />{$rsProduct['description']}</p>

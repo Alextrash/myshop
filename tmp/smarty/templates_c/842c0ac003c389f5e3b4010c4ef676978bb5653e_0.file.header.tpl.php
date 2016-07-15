@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-07-12 10:26:11
+/* Smarty version 3.1.29, created on 2016-07-15 15:48:27
   from "D:\xampp\htdocs\myshop.local\views\default\header.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5784a9a301d4b0_32061171',
+  'unifunc' => 'content_5788e9ab300be9_55565126',
   'file_dependency' => 
   array (
     '842c0ac003c389f5e3b4010c4ef676978bb5653e' => 
     array (
       0 => 'D:\\xampp\\htdocs\\myshop.local\\views\\default\\header.tpl',
-      1 => 1468311969,
+      1 => 1468590496,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:leftcolumn.tpl' => 1,
   ),
 ),false)) {
-function content_5784a9a301d4b0_32061171 ($_smarty_tpl) {
+function content_5788e9ab300be9_55565126 ($_smarty_tpl) {
 ?>
 <html>
 <head>
@@ -28,6 +28,12 @@ function content_5784a9a301d4b0_32061171 ($_smarty_tpl) {
 </title>
     <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['templateWebPath']->value;?>
 css/main.css" type="text/css" />
+    <?php echo '<script'; ?>
+ type="text/javascript" src="/js/jquery-3.0.0.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="/js/main.js"><?php echo '</script'; ?>
+>
 </head>
 <body>
 

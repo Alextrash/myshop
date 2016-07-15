@@ -14,5 +14,6 @@ $controllerName = isset($_GET['controller']) ? ucfirst($_GET['controller']) : 'I
 //опредеяем, с какой функцией будем работать
 $actionName = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-loadPage($smarty, $mysqli, $controllerName, $actionName);
+$smarty->assign('cartCntItems', count($_SESSION['cart']));
 
+loadPage($smarty, $mysqli, $controllerName, $actionName);

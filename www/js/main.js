@@ -12,8 +12,8 @@ function addToCart(itemId) {
             if(data['success']){
                 $('#cartCntItems').html(data['cntItems']);
 
-                $('#addCart_'+ itemId).hide();
-                $('#removeCart_'+itemId).show();
+                $('#addCart_' + itemId).hide();
+                $('#removeCart_' + itemId).show();
             }
         }
     });

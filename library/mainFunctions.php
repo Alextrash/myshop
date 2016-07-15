@@ -4,10 +4,10 @@
  */
 
 /**
- * фунция формирования запрашиваемой страницы
- *
- * @param $controllerName название контроллера
- * @param string $actionName функция описания страницы
+ * @param $smarty               обект для работы с шаблонизатором
+ * @param $mysqli               объект для работы с бд
+ * @param $controllerName       имя активного контроллера
+ * @param string $actionName    функция описания страницы
  */
 function loadPage ($smarty, $mysqli, $controllerName, $actionName = 'index') {
     include_once PathPrefix . $controllerName . PathPostfix;
