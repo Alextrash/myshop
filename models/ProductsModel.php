@@ -50,3 +50,15 @@ function getProductById($itemId, $mysqli){
     $rs = $mysqli->query($sql);
     return $rs->fetch_assoc();
 }
+
+function getProductsFromArray($itemsIds, $mysqli){
+
+    $strIds = implode($itemsIds, ", ");
+    $sql = "SELECT *
+            FROM `products`
+            WHERE `id` in ({$strIds})";
+
+    $rs = $mysqli->query($sql);
+
+    return createSmartyRsArray($rs, $mysqli);
+}

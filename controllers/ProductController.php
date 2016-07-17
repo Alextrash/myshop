@@ -21,6 +21,10 @@ function indexAction($smarty, $mysqli){
     $rsProduct = getProductById($itemId, $mysqli);          //массив данных о продукте
     $rsCategories = getAllMainCatsWithChildren($mysqli);    //все категории с дитями
 
+    if(in_array($itemId, $_SESSION['cart'])){
+        $inCart = 1;
+    } else $inCart = 0;
+    $smarty->assign('inCart', $inCart);
 
     $smarty->assign('pageTitle', 'Главная страница');
     $smarty->assign('rsCategories', $rsCategories);
