@@ -44,3 +44,32 @@ function conversionPrice(itemId){
     var itemRealPrice = newCnt * itemPrice;
     $('#itemRealPrice_' + itemId).html(itemRealPrice);
 }
+
+function registerNewUser(){
+    var postData = getData('#registerBox');
+
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: "/user/register/",
+        data: postData,
+        dataType: 'json',
+        success: function(data){
+            if(data['success']){
+                alert('Регистрация прошла успешно');
+                //> блок в левом столбце
+                $('#registerBox').hide();
+
+                $('#userLink').attr('href', '/user/');
+                $('#userLink').html(data['userName']);
+                $('#userBox').show();
+                //<
+
+                //>страница заказа
+                $('#loginBox').hide();
+            }
+        }
+
+
+            })
+}

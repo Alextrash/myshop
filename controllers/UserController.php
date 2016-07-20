@@ -23,7 +23,7 @@ function registerAction($mysqli){
 
     if(! $resData && checkUserEmail($email)){
         $resData['success'] = null;
-        $resData['message'] = "Пользователь с таким email уже существует";
+        $resData['message'] = "Пользователь с таким email ('{$email}') уже существует";
     }
 
     if(! $resData ){
