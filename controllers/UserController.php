@@ -20,4 +20,29 @@ function registerAction($mysqli){
 
     $resData = null;
     $resData = checkRegisterParams($email, $pwd1, $pwd2);
+
+    if(! $resData && checkUserEmail($email)){
+        $resData['success'] = null;
+        $resData['message'] = "Пользователь с таким email уже существует";
+    }
+
+    if(! $resData ){
+        $pwdMd5 = md5($pwd1);
+
+        $userData = registerNewUser($email, $pwdMd5, $name, $phone, $address, $mysqli);
+
+        if ($resData['success']){
+            $resData['success'] = 'Пользователь успешно зарегистрирован';
+            $resData['success'] = 1;
+
+            $userData = $userData[0];
+            $resData['userName'] = $userData['name'] ? $userData['name'] : $userData['email'];
+            $resData['userEmail'] = $email;
+
+            $_SESSION['user'] = $userData;
+            $_SESSION['user']['displayName'] = $userData['name'] ? $userData['name'] : $userData['email'];
+        } else {
+            $resData['success'] = 0;
+            $resData['message'] = 'Ошибка регистрации';}
+    }
 }

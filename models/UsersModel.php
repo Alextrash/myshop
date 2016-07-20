@@ -73,3 +73,21 @@ function сheckRegisterParams($email, $pwd1, $pwd2){
 
     return $res;
 }
+
+/**
+ * @param $email
+ * @param $mysqli
+ * @return array|bool
+ */
+function checkUserEmail($email, $mysqli)
+{
+    $email = $mysqli->real_string($email);
+    $sql = "SELECT id 
+            FROM `users`
+            WHERE `email` = {$email}";
+
+    $rs = $mysqli->query($sql);
+    $rs = createSmartyRsArray($email, $mysqli);
+
+    return $rs;
+}
