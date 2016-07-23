@@ -2,92 +2,91 @@
 /**
  * Модель для таблицв пользователей (users)
  */
+
 /**
+ * Регистрация пользователя в базе
  * @param $email
  * @param $pwdMD5
  * @param $name
  * @param $phone
  * @param $address
  * @param $mysqli
- * return array   данные пользователя
+ * @return array|bool массив с [0]=данными пользователя, [success]=флагом успеха
  */
 function registerNewUser($email, $pwdMD5, $name, $phone, $address, $mysqli){
-    $email = htmlspecialchars($mysqli->escape_string($email));
-    $pwdMD5 = htmlspecialchars($mysqli->escape_string($pwdMD5));
-    $name = htmlspecialchars($mysqli->escape_string($name));
-    $phone = htmlspecialchars($mysqli->escape_string($phone));
-    $address = htmlspecialchars($mysqli->escape_string($address));
+    
+    $email = htmlspecialchars($mysqli->real_escape_string($email));
+    $pwdMD5 = htmlspecialchars($mysqli->real_escape_string($pwdMD5));
+    $name = htmlspecialchars($mysqli->real_escape_string($name));
+    $phone = htmlspecialchars($mysqli->real_escape_string($phone));
+    $address = htmlspecialchars($mysqli->real_escape_string($address));
 
-    $sql = "INSERT INTO
-            `users` (`email`, `pwd`, `name`, `phone`, `address`)
-            VALUES (`$email`, `$pwdMD5`, `$name`, `$phone`, `$address`)";
-
+    $sql = "INSERT INTO `users` (`email`, `pwd`, `name`, `phone`, `address`)
+            VALUES ('$email', '$pwdMD5', '$name', '$phone', '$address')";
     $rs = $mysqli->query($sql);
 
     if($rs){
-        $sql = "SELECT *
-                FROM `users`
+        $sql = "SELECT * FROM `users`
                 WHERE (`email` = '{$email}' and `pwd` = '{$pwdMD5}')
                 LIMIT 1";
-
         $rs = $mysqli->query($sql);
         $rs = createSmartyRsArray($rs, $mysqli);
-
+        
         if(isset($rs[0])){
             $rs['success'] = 1;
-        } else $rs['success'] = 0;
-
-    }else $rs['success'] = 0;
+        } else {$rs['success'] = 0;}
+        
+    }else {$rs['success'] = 0;}
 
     return $rs;
 }
 
-
 /**
- * Проверяем переменные
+ * Проверяем регистрационные данные - наличие обоих паролей и их совпадение, наличие email
  * @param $email
  * @param $pwd1
  * @param $pwd2
  * @return array Описание ошибки
  */
-function сheckRegisterParams($email, $pwd1, $pwd2){
+function checkRegisterParams($email, $pwd1, $pwd2){
 
     $res = array();
 
-    if( ! $email) {
+    if(! $email) {
         $res['success'] = null;
         $res['message'] = 'Введите e-mail';
     }
-    if( ! $pwd1){
+    if(! $pwd1){
         $res['success'] = null;
-        $res['message'] = 'Введите пароль';
+        $res['message'] = ' Введите пароль';
     }
-    if( ! $pwd2){
+    if(! $pwd2){
         $res['success'] = null;
-        $res['message'] = 'Введите повтор пароля';
+        $res['message'] = ' Введите повтор пароля';
     }
     if($pwd1 != $pwd2){
         $res['success'] = null;
-        $res['message'] = 'Ошибка! Пароли не совпадают';
+        $res['message'] = ' Пароли не совпадают';
     }
 
     return $res;
 }
 
 /**
+ * Проверка почты до регистрации, на наличие в базе
  * @param $email
  * @param $mysqli
- * @return array|bool
+ * @return array|bool возвращаем id записи с существующим email или null
  */
 function checkUserEmail($email, $mysqli)
 {
-    $email = $mysqli->real_string($email);
+    $email = $mysqli->real_escape_string($email);
     $sql = "SELECT id 
             FROM `users`
-            WHERE `email` = {$email}";
+            WHERE `email` = '{$email}'";
 
     $rs = $mysqli->query($sql);
-    $rs = createSmartyRsArray($email, $mysqli);
+    $rs = createSmartyRsArray($rs, $mysqli);
 
-    return $rs;
-}
+    return $rs; 
+} 

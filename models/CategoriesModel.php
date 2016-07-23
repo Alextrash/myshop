@@ -8,8 +8,7 @@
  *
  * @param $catId id главной (родительской категории), для которой ищем детей
  * @param $mysqli объект для работы с базой данных
- *
- * return массив с детьми категории
+ * @return array|bool массив с детьми категории
  */
 function getChildrenForCat($catId, $mysqli){
     $sql = "SELECT *
@@ -43,7 +42,7 @@ function getAllMainCatsWithChildren($mysqli){
         }
 
         $smartyRs[] = $row;
-    };
+    }
     return $smartyRs;
 }
 
