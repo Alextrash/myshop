@@ -53,3 +53,42 @@ function registerAction($smarty, $mysqli){
 
     echo json_encode($resData);
 }
+
+/**
+ * Отлогинивание пользователя
+ * Возвращаем в ajax 
+ */
+function logoutAction(){
+    $logouted = NULL;
+    if(isset($_SESSION['user'])){
+        unset($_SESSION['user']);
+        unset($_SESSION['cart']);
+        $logouted = TRUE;
+    }
+    //redirect();
+    echo json_encode($logouted);
+}
+
+/**
+ * AJAX-авторизация пользователя
+ * 
+ * @return json Массив данных залогиненного пользователя
+ */
+function loginAction($smarty, $mysqli){
+    $email = trim(isInArray($_REQUEST, 'email'));
+    $pwd = trim(isInArray($_REQUEST, 'pwd'));
+    
+    $userData = loginUser($email, $pwd, $mysqli);
+    
+    if($userData['success']){
+        $userData = $userData[0];
+        
+        $_SESSION['user'] = $userData;
+        $_SESSION['user']['displayName'] = $userData['name'] ? $userData['name'] : $userData['email'];
+    } else {
+        $resData['success'] = null;
+        $resData['message'] = 'Неверные данные авторизации';
+    }
+    
+    echo json_encode($resData);
+}

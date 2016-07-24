@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-07-18 15:27:13
+/* Smarty version 3.1.29, created on 2016-07-24 14:33:38
   from "D:\xampp\htdocs\myshop.local\views\default\leftcolumn.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_578cd931e27bb1_74566466',
+  'unifunc' => 'content_5794b5a2d25c46_11725039',
   'file_dependency' => 
   array (
     '377f268e6b51dafea0b34852540109aafaaa827d' => 
     array (
       0 => 'D:\\xampp\\htdocs\\myshop.local\\views\\default\\leftcolumn.tpl',
-      1 => 1468848061,
+      1 => 1469363613,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_578cd931e27bb1_74566466 ($_smarty_tpl) {
+function content_5794b5a2d25c46_11725039 ($_smarty_tpl) {
 ?>
 
 <div id="leftColumn">
@@ -74,6 +74,18 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved_item;
 ?>
     </div>
 
+        <div id="userBox" class="hideme">
+        <a href="#" id="userLink"></a><br />
+        <a href="#" onclick="logout();">Выход</a>
+    </div>
+    
+    <div id="loginBox">
+        <div class="menuCaption">Авторизация </div>
+        <input type="text" id="loginEmail" name="loginEmail" value=""><br />
+        <input type="password" id="loginPwd" name="loginPwd" value=""><br />
+        <input type="button" onclick="login();" value="Войти"><br />
+    </div>
+    
     <div id="registerBox">
         <div class="menuCaption showHidden" onclick="showRegisterBox();">Регистрация</div>
         <div id="registerBoxHidden">

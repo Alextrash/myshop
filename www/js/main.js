@@ -69,7 +69,53 @@ function registerNewUser(){
             alert(data['message']);
             if(data['success'] === 1){
                 $('#registerBox').hide();
-            } 
+                
+                $('#userLink').attr('href', '/user/');
+                $('#userLink').html(data['userName']);
+                $('#userBox').show();
+            } else {
+                alert(data['message']);
+            }
+        }
+    });
+}
+
+function logout(){
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: "/user/logout/",
+        dataType: 'json',
+        success: function(data){
+            if(data){
+                window.location.replace('/');
+            }
+        }
+    });
+}
+
+function login(){
+    var email = $('#loginEmail').val();
+    var pwd   = $('#loginPwd').val();
+    var postData = "email=" + email + "&pwd=" + pwd;
+    
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: "/user/login/",
+        data: postData,
+        dataType: 'json',
+        success: function(data){
+            if(data['success']){
+                $('#registerBox').hide();
+                $('#loginBox').hide();
+                
+                $('#userLink').attr('href', '/user/');
+                $('#userLink').html(data['displayName']);
+                $('#userBox').show();
+            } else {
+                alert(data['message']);
+            }
         }
     });
 }

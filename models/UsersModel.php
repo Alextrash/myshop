@@ -90,3 +90,29 @@ function checkUserEmail($email, $mysqli)
 
     return $rs; 
 } 
+
+/**
+ * Забираем данные пользователя из базы
+ * @param type $email
+ * @param type $pwd
+ * @param type $mysqli
+ * @return array данные пользователя и флаг об успешности выполнения запроса
+ */
+function loginUser($email, $pwd, $mysqli){
+    $email = htmlspecialchars($mysqli->real_escape_string($email));
+    $pwd = md5($pwd);
+    
+    $sql = "SELECT * FROM `users`
+            WHERE (`email` = '{$email}' and `pwd` = '{$pwd}')
+            LIMIT 1";
+            
+    $rs = $mysqli->query($sql);
+    
+    $rs = createSmartyRsArray($rs, $mysqli);
+    if(isset($rs[0])){
+            $rs['success'] = 1;
+    } else {
+        $rs['success'] = 0;
+    }
+    return $rs;
+}
