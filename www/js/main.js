@@ -1,5 +1,7 @@
 /**
- * Created by Core on 14.07.2016.
+ * Добавление товара в корзину
+ * @param {type} itemId  ID товара по базе
+ * @returns {undefined}
  */
 function addToCart(itemId) {
     console.log("js - addToCart()");
@@ -118,4 +120,9 @@ function login(){
             }
         }
     });
+}
+
+function showRegisterBox(){
+    $('#registerBoxHidden').show();
+    $('#registerBoxHidden').hide();
 }

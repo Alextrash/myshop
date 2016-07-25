@@ -85,6 +85,10 @@ function loginAction($smarty, $mysqli){
         
         $_SESSION['user'] = $userData;
         $_SESSION['user']['displayName'] = $userData['name'] ? $userData['name'] : $userData['email'];
+        
+        $resData = $_SESSION['user'];
+        $resData['success'] = 1;
+        
     } else {
         $resData['success'] = null;
         $resData['message'] = 'Неверные данные авторизации';

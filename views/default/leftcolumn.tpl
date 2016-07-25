@@ -26,8 +26,8 @@
     </div>
     
     <div id="registerBox">
-        <div class="menuCaption showHidden" onclick="showRegisterBox();">Регистрация</div>
-        <div id="registerBoxHidden">
+        <div class="menuCaption" onclick="showRegisterBox();"><a href="#">Регистрация</a></div>
+        <div id="registerBoxHidden" class="hideme">
             e-mail: <br />
             <input type="text" id="email" name="email" value=""/><br />
             пароль: <br />

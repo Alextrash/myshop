@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-07-24 14:33:38
+/* Smarty version 3.1.29, created on 2016-07-25 22:40:37
   from "D:\xampp\htdocs\myshop.local\views\default\leftcolumn.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5794b5a2d25c46_11725039',
+  'unifunc' => 'content_579679459f90e4_26236628',
   'file_dependency' => 
   array (
     '377f268e6b51dafea0b34852540109aafaaa827d' => 
     array (
       0 => 'D:\\xampp\\htdocs\\myshop.local\\views\\default\\leftcolumn.tpl',
-      1 => 1469363613,
+      1 => 1469479145,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5794b5a2d25c46_11725039 ($_smarty_tpl) {
+function content_579679459f90e4_26236628 ($_smarty_tpl) {
 ?>
 
 <div id="leftColumn">
@@ -87,8 +87,8 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved_item;
     </div>
     
     <div id="registerBox">
-        <div class="menuCaption showHidden" onclick="showRegisterBox();">Регистрация</div>
-        <div id="registerBoxHidden">
+        <div class="menuCaption" onclick="showRegisterBox();"><a href="#">Регистрация</a></div>
+        <div id="registerBoxHidden" class="hideme">
             e-mail: <br />
             <input type="text" id="email" name="email" value=""/><br />
             пароль: <br />
