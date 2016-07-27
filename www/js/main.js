@@ -123,6 +123,10 @@ function login(){
 }
 
 function showRegisterBox(){
-    $('#registerBoxHidden').show();
-    $('#registerBoxHidden').hide();
+    if( $('#registerBoxHidden').attr('value') !== '1'){
+        $('#registerBoxHidden').show();
+        $('#registerBoxHidden').attr('value', '1');
+    } else {
+        $('#registerBoxHidden').hide();
+        $('#registerBoxHidden').attr('value', '');}
 }

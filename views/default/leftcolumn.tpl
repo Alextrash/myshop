@@ -26,7 +26,7 @@
     </div>
     
     <div id="registerBox">
-        <div class="menuCaption" onclick="showRegisterBox();"><a href="#">Регистрация</a></div>
+        <div class="menuCaption" onclick="showRegisterBox();" value=""><a href="#">Регистрация</a></div>
         <div id="registerBoxHidden" class="hideme">
             e-mail: <br />
             <input type="text" id="email" name="email" value=""/><br />
