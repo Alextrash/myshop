@@ -51,9 +51,7 @@ function createSmartyRsArray($rs, $mysqli){
  * Редирект
  * @param string $url адрес перенаправления
  */
-function redirect($url){
-    
-    if(! $url) $url = "/";
+function redirect($url = "/"){
     header("Location: {$url}");
     exit();
 }

@@ -15,7 +15,7 @@
         
     {if isset($arUser)}
         <div id="userBox">
-        <a href="/user/" id="userLink">{$arUser['diplayName']}</a><br />
+        <a href="/user/" id="userLink">{$arUser['displayName']}</a><br />
         <a href="/user/logout/" onclick="logout();">Выход</a>
     </div>
         

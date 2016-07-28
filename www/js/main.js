@@ -71,12 +71,11 @@ function registerNewUser(){
             alert(data['message']);
             if(data['success'] === 1){
                 $('#registerBox').hide();
+                $('#loginBox').hide();
                 
                 $('#userLink').attr('href', '/user/');
                 $('#userLink').html(data['userName']);
                 $('#userBox').show();
-            } else {
-                alert(data['message']);
             }
         }
     });
@@ -87,12 +86,7 @@ function logout(){
         type: 'POST',
         async: false,
         url: "/user/logout/",
-        dataType: 'json',
-        success: function(data){
-            if(data){
-                window.location.replace('/');
-            }
-        }
+        dataType: 'json'        
     });
 }
 

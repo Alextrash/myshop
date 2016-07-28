@@ -65,8 +65,7 @@ function logoutAction(){
         unset($_SESSION['cart']);
         $logouted = TRUE;
     }
-    //redirect();
-    echo json_encode($logouted);
+    redirect();    
 }
 
 /**
@@ -95,4 +94,26 @@ function loginAction($smarty, $mysqli){
     }
     
     echo json_encode($resData);
+}
+
+/**
+ * Формирование страницы пользователя (кабинет)
+ * @param type $smarty
+ * @param type $mysqli
+ */
+function indexAction ($smarty, $mysqli){
+    
+    if(!isset($_SESSION['user'])){
+        redirect();
+    }
+    
+    $rsCategories = getAllMainCatsWithChildren($mysqli);    //все категории с дитями
+    
+    $smarty->assign('pageTitle', 'Главная страница');
+    $smarty->assign('rsCategories', $rsCategories);
+    
+    loadTemplate($smarty, 'header');
+    loadTemplate($smarty, 'user');
+    loadTemplate($smarty, 'footer');
+    
 }

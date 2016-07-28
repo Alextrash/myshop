@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-07-28 12:29:36
+/* Smarty version 3.1.29, created on 2016-07-28 21:12:36
   from "D:\xampp\htdocs\myshop.local\views\default\leftcolumn.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5799de908719b7_81392906',
+  'unifunc' => 'content_579a59247d3476_44342650',
   'file_dependency' => 
   array (
     '377f268e6b51dafea0b34852540109aafaaa827d' => 
     array (
       0 => 'D:\\xampp\\htdocs\\myshop.local\\views\\default\\leftcolumn.tpl',
-      1 => 1469701758,
+      1 => 1469733146,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5799de908719b7_81392906 ($_smarty_tpl) {
+function content_579a59247d3476_44342650 ($_smarty_tpl) {
 ?>
 
 <div id="leftColumn">
@@ -76,7 +76,7 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved_item;
         
     <?php if (isset($_smarty_tpl->tpl_vars['arUser']->value)) {?>
         <div id="userBox">
-        <a href="/user/" id="userLink"><?php echo $_smarty_tpl->tpl_vars['arUser']->value['diplayName'];?>
+        <a href="/user/" id="userLink"><?php echo $_smarty_tpl->tpl_vars['arUser']->value['displayName'];?>
 </a><br />
         <a href="/user/logout/" onclick="logout();">Выход</a>
     </div>
