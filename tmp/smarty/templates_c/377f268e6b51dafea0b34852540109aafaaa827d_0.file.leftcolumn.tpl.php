@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-07-27 23:20:42
+/* Smarty version 3.1.29, created on 2016-07-28 12:29:36
   from "D:\xampp\htdocs\myshop.local\views\default\leftcolumn.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_579925aa780b42_63543621',
+  'unifunc' => 'content_5799de908719b7_81392906',
   'file_dependency' => 
   array (
     '377f268e6b51dafea0b34852540109aafaaa827d' => 
     array (
       0 => 'D:\\xampp\\htdocs\\myshop.local\\views\\default\\leftcolumn.tpl',
-      1 => 1469654404,
+      1 => 1469701758,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579925aa780b42_63543621 ($_smarty_tpl) {
+function content_5799de908719b7_81392906 ($_smarty_tpl) {
 ?>
 
 <div id="leftColumn">
@@ -73,8 +73,16 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved_item;
 }
 ?>
     </div>
-
-        <div id="userBox" class="hideme">
+        
+    <?php if (isset($_smarty_tpl->tpl_vars['arUser']->value)) {?>
+        <div id="userBox">
+        <a href="/user/" id="userLink"><?php echo $_smarty_tpl->tpl_vars['arUser']->value['diplayName'];?>
+</a><br />
+        <a href="/user/logout/" onclick="logout();">Выход</a>
+    </div>
+        
+    <?php } else { ?>
+    <div id="userBox" class="hideme">
         <a href="#" id="userLink"></a><br />
         <a href="#" onclick="logout();">Выход</a>
     </div>
@@ -97,9 +105,9 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved_item;
             <input type="password" id="pwd2" name="pwd2" value=""/><br />
             <input type="button" onclick="registerNewUser();" value="Зарегистрироваться"/><br />
         </div>
-
     </div>
-
+    <?php }?>
+    
     <div class="menuCaption">Корзина</div>
     <a href="/cart/" title="Перейти в корзину">В корзине</a>
     <span id="cartCntItems">
