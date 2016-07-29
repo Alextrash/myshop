@@ -116,3 +116,30 @@ function loginUser($email, $pwd, $mysqli){
     }
     return $rs;
 }
+
+function updateUserData($email, $name, $phone, $address, $pwd1, $pwd1, $curPwd, $mysqli){
+                   
+    if($curPwd != NULL && $email != NULL){
+        $sql = "SELECT `pwd` FROM `users` WHERE `email`='{$email}'";
+        $rs = $mysqli->query($sql);
+    }
+    
+    if($pwd1 !=NULL && $pwd2 != NULL && $pwd1 == $pwd2){
+        $pwdMD5 = md5($pwd1);
+        
+        $sql = "UPDATE `users`
+                SET 
+                `name`='{$name}', `phone`='{$phone}', `address`='{$address}', `pwd`='{$pwdMD5}'
+                WHERE `email`='{$email} AND '";
+    } elseif ($pwd1 != $pwd2) {
+         
+    }
+}
+
+    $sql = 
+    $rs = $mysqli->query($sql);
+
+   
+ 
+    return $rs;
+}
