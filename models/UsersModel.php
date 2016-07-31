@@ -112,34 +112,41 @@ function loginUser($email, $pwd, $mysqli){
     if(isset($rs[0])){
             $rs['success'] = 1;
     } else {
-        $rs['success'] = 0;
+        $rs['success'] = NULL;
     }
     return $rs;
 }
 
-function updateUserData($email, $name, $phone, $address, $pwd1, $pwd1, $curPwd, $mysqli){
-                   
-    if($curPwd != NULL && $email != NULL){
-        $sql = "SELECT `pwd` FROM `users` WHERE `email`='{$email}'";
-        $rs = $mysqli->query($sql);
-    }
+/**
+ * 
+ * @param type $email
+ * @param type $name
+ * @param type $phone
+ * @param type $address
+ * @param type $pwd1
+ * @param type $pwd2
+ * @param type $curPwd
+ * @param type $mysqli
+ * @return type
+ */
+function updateUserData($email, $name, $phone, $address, $pwd1, $pwd2, $curPwd, $mysqli){
     
-    if($pwd1 !=NULL && $pwd2 != NULL && $pwd1 == $pwd2){
-        $pwdMD5 = md5($pwd1);
+    $rs = loginUser($email, $curPwd, $mysqli); // проверяем правильность мыло+пароль
         
-        $sql = "UPDATE `users`
-                SET 
-                `name`='{$name}', `phone`='{$phone}', `address`='{$address}', `pwd`='{$pwdMD5}'
-                WHERE `email`='{$email} AND '";
-    } elseif ($pwd1 != $pwd2) {
-         
-    }
-}
-
-    $sql = 
-    $rs = $mysqli->query($sql);
-
-   
- 
+    if($rs['success']){
+        $curPwdMD5 = md5($curPwd);
+        
+        $sql = "UPDATE `users` SET 
+                `name`='{$name}', `phone`='{$phone}', `address`='{$address}'";
+        
+        if($pwd1 && ($pwd1 == $pwd2)){
+            $pwdMD5 = md5($pwd1);
+            $sql.=", `pwd`='{$pwdMD5}'";
+        }
+        $sql.= "WHERE `email`='{$email}' AND `pwd`='{$curPwdMD5}'
+                LIMIT 1";
+                
+        $rs = $mysqli->query($sql);
+    } 
     return $rs;
 }

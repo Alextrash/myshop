@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-07-28 21:12:36
+/* Smarty version 3.1.29, created on 2016-07-31 20:12:07
   from "D:\xampp\htdocs\myshop.local\views\default\leftcolumn.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_579a59247d3476_44342650',
+  'unifunc' => 'content_579e3f77e483c6_59584840',
   'file_dependency' => 
   array (
     '377f268e6b51dafea0b34852540109aafaaa827d' => 
     array (
       0 => 'D:\\xampp\\htdocs\\myshop.local\\views\\default\\leftcolumn.tpl',
-      1 => 1469733146,
+      1 => 1469988726,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579a59247d3476_44342650 ($_smarty_tpl) {
+function content_579e3f77e483c6_59584840 ($_smarty_tpl) {
 ?>
 
 <div id="leftColumn">
@@ -117,10 +117,5 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved_item;
             <?php } else { ?> Пусто
         <?php }?>
     </span>
-    <div class="dropcart">
-        <a href="#" alt="Дропнуть корзину" id="dropCart_<?php echo $_smarty_tpl->tpl_vars['rsProduct']->value['id'];?>
-" onclick="dropCart(<?php echo $_smarty_tpl->tpl_vars['rsProduct']->value['id'];?>
-); return false;">Дропнуть корзину</a>
-    </div>
 </div><?php }
 }

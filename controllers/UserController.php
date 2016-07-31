@@ -115,5 +115,43 @@ function indexAction ($smarty, $mysqli){
     loadTemplate($smarty, 'header');
     loadTemplate($smarty, 'user');
     loadTemplate($smarty, 'footer');
+}
+
+function updateAction($smarty, $mysqli){
+    if(!isset($_SESSION['user'])){
+        redirect();
+    }
+    $resData = array();
+    $email = $_SESSION['user']['email'];
+    $curPwd = isInArray($_REQUEST, 'curPwd');
+    $pwd1 = isInArray($_REQUEST, 'newPwd1');
+    $pwd2 = isInArray($_REQUEST, 'newPwd2');
+    $phone = isInArray($_REQUEST, 'newPhone');
+    $address = isInArray($_REQUEST, 'newAddress');
+    $name = isInArray($_REQUEST, 'newName');
     
+    $curPwdMD5 = md5($curPwd);
+    if( ! $curPwd || $_SESSION['user']['pwd'] != $curPwdMD5){
+        $resData['success'] = 0;
+        $resData['message'] = "Текущий пароль не верен!";
+        $resData['userName'] = $name;
+        echo json_encode($resData);
+    }
+    
+    $resUpdate = updateUserData($email, $name, $phone, $address, $pwd1, $pwd2, $curPwd, $mysqli);
+    
+    if($resUpdate){
+        $resData['success'] = 1;
+        $resData['message'] = 'Данные успешно сохранены';
+        $_SESSION['user']['name'] = $name;
+        $_SESSION['user']['phone'] = $phone;
+        $_SESSION['user']['address'] = $address;
+        $_SESSION['user']['curPwd'] = $curPwd;
+        $_SESSION['user']['dislayName'] = $name ? $name : $email;
+    } else {
+        $resData['success'] = 0;
+        $resData['message'] = "ошибка сохранения данных!";
+    }
+    d($resData);
+     echo json_encode($resData);
 }

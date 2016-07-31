@@ -54,7 +54,4 @@
             {else} Пусто
         {/if}
     </span>
-    <div class="dropcart">
-        <a href="#" alt="Дропнуть корзину" id="dropCart_{$rsProduct['id']}" onclick="dropCart({$rsProduct['id']}); return false;">Дропнуть корзину</a>
-    </div>
 </div>

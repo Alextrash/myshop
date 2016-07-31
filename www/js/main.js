@@ -52,7 +52,7 @@ function getData(obj_form) {
     $('input, textarea, select', obj_form).each(function () {
         if(this.name && this.name !==''){
             hData[this.name] = this.value;
-            console.log('hData[' + this.name + '] = ' + hData[this.name]);
+         //   console.log('hData[' + this.name + '] = ' + hData[this.name]);
         }
     });
     return hData;
@@ -121,6 +121,25 @@ function showRegisterBox(){
         $('#registerBoxHidden').show();
         $('#registerBoxHidden').attr('value', '1');
     } else {
-        $('#registerBoxHidden').hide();
+        $('#registerBoxHidden').hide(); 
         $('#registerBoxHidden').attr('value', '');}
+}
+
+function updateUserData(){
+    console.log('js - updateUserData');
+    var postData = getData('#userDataBox');
+    console.log(postData);
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: "/user/update/",
+        data: postData,
+        dataType: 'json',
+        success: function(data){
+            alert(data['message']);
+            if(data['success'] === 1){
+                $('#userLink').html(data['userName']);
+            }
+        }
+    });
 }
