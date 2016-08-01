@@ -17,7 +17,7 @@
     </tr>
     <tr>
         <td>Адрес</td>
-        <td><textarea id="newAddress" name="newAddress" value="{$arUser['address']}"></textarea></td>
+        <td><textarea id="newAddress" name="newAddress">{$arUser['address']}</textarea></td>
     </tr>
     <tr>
         <td>Новый пароль</td>

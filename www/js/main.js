@@ -126,9 +126,9 @@ function showRegisterBox(){
 }
 
 function updateUserData(){
-    console.log('js - updateUserData');
     var postData = getData('#userDataBox');
     console.log(postData);
+    
     $.ajax({
         type: 'POST',
         async: false,

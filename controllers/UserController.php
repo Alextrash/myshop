@@ -134,24 +134,22 @@ function updateAction($smarty, $mysqli){
     if( ! $curPwd || $_SESSION['user']['pwd'] != $curPwdMD5){
         $resData['success'] = 0;
         $resData['message'] = "Текущий пароль не верен!";
-        $resData['userName'] = $name;
-        echo json_encode($resData);
+    } else{
+        $resUpdate = updateUserData($email, $name, $phone, $address, $pwd1, $pwd2, $curPwdMD5, $mysqli);
+
+        if($resUpdate){
+            $resData['success'] = 1;
+            $resData['message'] = 'Данные успешно сохранены';
+            
+            $_SESSION['user']['name'] = $name;
+            $_SESSION['user']['phone'] = $phone;
+            $_SESSION['user']['address'] = $address;
+            $_SESSION['user']['pwd'] = md5($pwd1);
+            $resData['userName'] = $_SESSION['user']['dislayName'] = $name ? $name : $email;
+        } else {
+            $resData['success'] = 0;
+            $resData['message'] = "ошибка сохранения данных!";
+        }
     }
-    
-    $resUpdate = updateUserData($email, $name, $phone, $address, $pwd1, $pwd2, $curPwd, $mysqli);
-    
-    if($resUpdate){
-        $resData['success'] = 1;
-        $resData['message'] = 'Данные успешно сохранены';
-        $_SESSION['user']['name'] = $name;
-        $_SESSION['user']['phone'] = $phone;
-        $_SESSION['user']['address'] = $address;
-        $_SESSION['user']['curPwd'] = $curPwd;
-        $_SESSION['user']['dislayName'] = $name ? $name : $email;
-    } else {
-        $resData['success'] = 0;
-        $resData['message'] = "ошибка сохранения данных!";
-    }
-    d($resData);
-     echo json_encode($resData);
+    echo json_encode($resData);
 }

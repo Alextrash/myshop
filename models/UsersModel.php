@@ -131,22 +131,17 @@ function loginUser($email, $pwd, $mysqli){
  */
 function updateUserData($email, $name, $phone, $address, $pwd1, $pwd2, $curPwd, $mysqli){
     
-    $rs = loginUser($email, $curPwd, $mysqli); // проверяем правильность мыло+пароль
-        
-    if($rs['success']){
-        $curPwdMD5 = md5($curPwd);
-        
-        $sql = "UPDATE `users` SET 
-                `name`='{$name}', `phone`='{$phone}', `address`='{$address}'";
-        
-        if($pwd1 && ($pwd1 == $pwd2)){
-            $pwdMD5 = md5($pwd1);
-            $sql.=", `pwd`='{$pwdMD5}'";
-        }
-        $sql.= "WHERE `email`='{$email}' AND `pwd`='{$curPwdMD5}'
-                LIMIT 1";
-                
-        $rs = $mysqli->query($sql);
-    } 
+    $sql = "UPDATE `users` SET 
+           `name`='{$name}', `phone`='{$phone}', `address`='{$address}'";
+
+    if($pwd1 && ($pwd1 == $pwd2)){
+        $pwdMD5 = md5($pwd1);
+        $sql.=", `pwd`='{$pwdMD5}'";
+    }
+    $sql.= "WHERE `email`='{$email}' AND `pwd`='{$curPwd}'
+            LIMIT 1";
+    //d($sql);
+    $rs = $mysqli->query($sql);
+    
     return $rs;
 }
