@@ -130,17 +130,20 @@ function loginUser($email, $pwd, $mysqli){
  * @return type
  */
 function updateUserData($email, $name, $phone, $address, $pwd1, $pwd2, $curPwd, $mysqli){
-    
+    //отсеили ещё раз нулевой email и неравные пароли
+    if( ! $email || $pwd1 != $pwd2 ){
+        return NULL;
+    }
     $sql = "UPDATE `users` SET 
            `name`='{$name}', `phone`='{$phone}', `address`='{$address}'";
 
-    if($pwd1 && ($pwd1 == $pwd2)){
+    if($pwd1){
         $pwdMD5 = md5($pwd1);
         $sql.=", `pwd`='{$pwdMD5}'";
     }
+    
     $sql.= "WHERE `email`='{$email}' AND `pwd`='{$curPwd}'
             LIMIT 1";
-    //d($sql);
     $rs = $mysqli->query($sql);
     
     return $rs;

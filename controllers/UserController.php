@@ -130,7 +130,7 @@ function updateAction($smarty, $mysqli){
     $address = isInArray($_REQUEST, 'newAddress');
     $name = isInArray($_REQUEST, 'newName');
     
-    $curPwdMD5 = md5($curPwd);
+    $curPwdMD5 = md5($curPwd); //хэш пароля подтверждения
     if( ! $curPwd || $_SESSION['user']['pwd'] != $curPwdMD5){
         $resData['success'] = 0;
         $resData['message'] = "Текущий пароль не верен!";
@@ -144,11 +144,12 @@ function updateAction($smarty, $mysqli){
             $_SESSION['user']['name'] = $name;
             $_SESSION['user']['phone'] = $phone;
             $_SESSION['user']['address'] = $address;
-            $_SESSION['user']['pwd'] = md5($pwd1);
+            $_SESSION['user']['pwd'] = $pwd1 ? md5($pwd1) : $_SESSION['user']['pwd'];
+            
             $resData['userName'] = $_SESSION['user']['dislayName'] = $name ? $name : $email;
         } else {
             $resData['success'] = 0;
-            $resData['message'] = "ошибка сохранения данных!";
+            $resData['message'] = "Ошибка. Проверьте вводимые данные!";
         }
     }
     echo json_encode($resData);
