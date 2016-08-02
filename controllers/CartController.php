@@ -54,7 +54,7 @@ function removefromcartAction(){
  * @param $mysqli
  * @link /cart/
  */
-function indexAction($smarty, $mysqli){
+function indexAction($smarty, $mysqli){ 
 
     $itemsIds = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
 
@@ -68,4 +68,18 @@ function indexAction($smarty, $mysqli){
     loadTemplate($smarty, 'header');
     loadTemplate($smarty, 'cart');
     loadTemplate($smarty, 'footer');
+}
+
+function orderAction($smarty, $mysqli){
+    //получаем массив идентификаторов товара добавленного в корзину
+    $itemsIds = isset($_SESSION['cart']) ? $_SESSION['cart'] : NULL;
+    //при пустой корзине -> редирект в обратно в корзину
+    if(! $itemsIds){
+        redirect();
+        return;
+    }
+    $itemsCnt = array();
+    foreach($itemsIds as $items){
+        
+    }
 }
