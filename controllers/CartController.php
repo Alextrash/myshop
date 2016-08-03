@@ -75,14 +75,31 @@ function orderAction($smarty, $mysqli){
     //при пустой корзине -> редирект в обратно в корзину
     if(! $_SESSION['cart']){
         redirect();
+    }
+    $itemsCart = $_POST; //получаем массив с id и кол-вом товара
+    
+    //Форматируем индексы входящего массива $itemsCart из [text_id] в [id]
+    foreach($itemsCart as $id => $cnt ){
+        $i = explode('_', $id); 
+        $k = $i[1];
+        $itemsCart[$k] = $cnt;
+        unset($itemsCart[$id]);
+    }
+    //подгружаем всю инфу из базы по товарам из корзины
+    $rsProducts = getProductsFromArray($_SESSION['cart'], $mysqli);
+    
+    //добавляем в массив инфой по товарам их КОЛИЧЕСТВО для заказа
+    foreach ($rsProducts as &$item){
+        $item['cnt'] = isset($itemsCart[$item['id']]) ? $itemsCart[$item['id']] : 0;
+        if($item['cnt']){
+            $item['realPrice'] = $item['cnt'] * $item['price'];
+        } else {
+            unset($item); //хз как это будет работать, надо дебажить!
+        }
+    }
+    if( ! $rsProducts){
+        echo "Корзина пуста";
         return;
     }
-    $itemsCart = $_POST;
-    $itemsInfo = array();
-    //Форматируем индексы входящего массива [text_id]=>count в [id]=>count
-    foreach($itemsCart as $id => $cnt ){
-        $i = explode('_', $id); $k = $i[1];
-        $itemsInfo[$k] = $cnt;
-    }
-    d($itemsInfo);
+    $_SESSION['saleCart'] = $rsProducts;
 }

@@ -57,7 +57,6 @@ function getProductsFromArray($itemsIds, $mysqli){
     $sql = "SELECT *
             FROM `products`
             WHERE `id` in ({$strIds})";
-
     $rs = $mysqli->query($sql);
 
     return createSmartyRsArray($rs, $mysqli);

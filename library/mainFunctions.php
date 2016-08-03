@@ -37,6 +37,13 @@ function d($value = null, $die = 1){
     if($die) die;
 }
 
+/**
+ * Обработка (форматирование) данных из sql-запроса
+ * @param type $rs -  необработанный набор данных
+ * @param type $mysqli
+ * @return boolean false
+ *      or array - если даные обработаны
+ */
 function createSmartyRsArray($rs, $mysqli){
     if( ! $rs) return false;
 
