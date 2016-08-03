@@ -71,15 +71,18 @@ function indexAction($smarty, $mysqli){
 }
 
 function orderAction($smarty, $mysqli){
-    //получаем массив идентификаторов товара добавленного в корзину
-    $itemsIds = isset($_SESSION['cart']) ? $_SESSION['cart'] : NULL;
+   
     //при пустой корзине -> редирект в обратно в корзину
-    if(! $itemsIds){
+    if(! $_SESSION['cart']){
         redirect();
         return;
     }
-    $itemsCnt = array();
-    foreach($itemsIds as $items){
-        
+    $itemsCart = $_POST;
+    $itemsInfo = array();
+    //Форматируем индексы входящего массива [text_id]=>count в [id]=>count
+    foreach($itemsCart as $id => $cnt ){
+        $i = explode('_', $id); $k = $i[1];
+        $itemsInfo[$k] = $cnt;
     }
+    d($itemsInfo);
 }
