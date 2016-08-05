@@ -102,4 +102,16 @@ function orderAction($smarty, $mysqli){
         return;
     }
     $_SESSION['saleCart'] = $rsProducts;
+    
+    if($_SESSION['user']){
+       $smarty->assign('hideLoginBox', 1);
+    }
+    
+    $smarty->assign('pageTitle', 'Заказ');
+    $smarty->assign('rsCategories', $rsCategories);
+    $smarty->assign('rsProducts', $rsProducts);
+    
+    loadTemplate($smarty, 'header');
+    loadTemplate($smarty, 'order');
+    loadTemplate($smarty, 'footer');
 }
