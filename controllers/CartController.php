@@ -70,6 +70,13 @@ function indexAction($smarty, $mysqli){
     loadTemplate($smarty, 'footer');
 }
 
+/**
+ * Оформление заказа товара
+ * 
+ * @param type $smarty
+ * @param type $mysqli
+ * @return type
+ */
 function orderAction($smarty, $mysqli){
    
     //при пустой корзине -> редирект в обратно в корзину
@@ -103,9 +110,10 @@ function orderAction($smarty, $mysqli){
     }
     $_SESSION['saleCart'] = $rsProducts;
     
-    if($_SESSION['user']){
+    if(isset($_SESSION['user'])){
        $smarty->assign('hideLoginBox', 1);
     }
+    $rsCategories = getAllMainCatsWithChildren($mysqli);
     
     $smarty->assign('pageTitle', 'Заказ');
     $smarty->assign('rsCategories', $rsCategories);
