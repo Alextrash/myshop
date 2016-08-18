@@ -110,8 +110,8 @@ function orderAction($smarty, $mysqli){
     }
     $_SESSION['saleCart'] = $rsProducts;
     
-    if(isset($_SESSION['user'])){
-       $smarty->assign('hideLoginBox', 1);
+    if( ! isset($_SESSION['user'])){
+       $smarty->assign('hideLoginBox', "1");
     }
     $rsCategories = getAllMainCatsWithChildren($mysqli);
     
