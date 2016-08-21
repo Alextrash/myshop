@@ -146,3 +146,20 @@ function updateUserData(){
         }
     });
 }
+
+function saveOrder(){
+    var postData = getData('form');
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: "/cart/saveorder/",
+        data: postData,
+        dataType: 'json',
+        success: function(data){
+            alert(data['message']);
+            if(data['success']){
+                document.location = '/';
+            }
+        }
+    });
+}

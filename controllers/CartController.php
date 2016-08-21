@@ -123,3 +123,7 @@ function orderAction($smarty, $mysqli){
     loadTemplate($smarty, 'order');
     loadTemplate($smarty, 'footer');
 }
+
+function saveorderAction(){
+     
+}
