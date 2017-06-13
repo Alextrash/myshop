@@ -1,8 +1,16 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+function setPurchaseForOrder($orderId, $cart, $mysqli){
+    $sql = "INSERT INTO purchase "
+            . "(`order_id`, `product_id`, `price`, `amount`) "
+            . "VALUES ";
+    $values = array();
+    //forming array of strings for every merchandize
+    foreach ($cart as $item){
+        $values[] = "('{$orderId}', '{$item['id']}', '{$item['price']}', '{$item['cnt']}')";
+    }
+    $sql .= implode($values, ', ');
+    $rs = $mysqli->query($sql);
+    
+    return $rs;
+}

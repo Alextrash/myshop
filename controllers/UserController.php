@@ -5,6 +5,8 @@
 
 include_once '../models/CategoriesModel.php';
 include_once '../models/UsersModel.php';
+include_once '../models/OrdersModel.php';
+include_once '../models/PurchaseModel.php';
 
 function isInArray($array, $key, $default=NULL){
     return isset($array[$key]) ? $array[$key] : $default;        
@@ -108,6 +110,9 @@ function indexAction ($smarty, $mysqli){
     }
     
     $rsCategories = getAllMainCatsWithChildren($mysqli);    //все категории с дитями
+    $rsUserOrder = getCurUserOrders($smarty, $mysqli);
+    
+    d($rsUserOrder);
     
     $smarty->assign('pageTitle', 'Главная страница');
     $smarty->assign('rsCategories', $rsCategories);

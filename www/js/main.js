@@ -76,6 +76,7 @@ function registerNewUser(){
                 $('#userLink').attr('href', '/user/');
                 $('#userLink').html(data['userName']);
                 $('#userBox').show();
+                $('#btnSaveOrder').show();
             }
         }
     });
@@ -146,9 +147,11 @@ function updateUserData(){
         }
     });
 }
-
+ 
 function saveOrder(){
     var postData = getData('form');
+    console.log(postData);
+    
     $.ajax({
         type: 'POST',
         async: false,
@@ -157,7 +160,7 @@ function saveOrder(){
         dataType: 'json',
         success: function(data){
             alert(data['message']);
-            if(data['success']){
+            if(data['success'] === 1){
                 document.location = '/';
             }
         }

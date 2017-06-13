@@ -5,6 +5,9 @@
 
 include_once '../models/CategoriesModel.php';
 include_once '../models/ProductsModel.php';
+include_once '../models/OrdersModel.php';
+include_once '../models/PurchaseModel.php';
+
 
 /**
  * Добавление продукта в корзину
@@ -123,7 +126,47 @@ function orderAction($smarty, $mysqli){
     loadTemplate($smarty, 'order');
     loadTemplate($smarty, 'footer');
 }
-
-function saveorderAction(){
-     
+/**
+ * AJAX-function for save orders data in DB
+ * @param type $mysqli
+ * @return type
+ */
+function saveorderAction($smarty, $mysqli){
+    //get array of products
+    $cart = isset($_SESSION['saleCart']) ? $_SESSION['saleCart'] : null;
+    //if cart is empty -> construct aswer with error and get it back in json-format
+    //leave function
+    if(!$cart){
+        $resData['success'] = 0;
+        $resData['message'] = 'No products for order!';
+        echo json_encode($resData);
+        return;
+    }
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    
+    //make new order and get it id back
+    $orderId = makeNewOrder($smarty, $name, $phone, $address, $mysqli);
+    
+    if(! $orderId){
+        $resData['success'] = 0;
+        $resData['message'] = "Error! Order wasn't created!";
+        echo json_encode($resData);
+        return;
+    }
+    
+    //Save commodity for current order
+    $res = setPurchaseForOrder($orderId, $cart, $mysqli);
+    
+     if($res){
+        $resData['success'] = 1;
+        $resData['message'] = "Order saved!";
+        unset($_SESSION['saleCart']);
+        unset($_SESSION['cart']);
+    } else {
+        $resData['success'] = 0;
+        $resData['message'] = "Error with order-data saving. Order # " . $orderId;  
+    }
+    echo json_encode($resData);
 }

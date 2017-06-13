@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-08-18 15:54:03
+/* Smarty version 3.1.29, created on 2017-06-07 13:10:00
   from "D:\xampp\htdocs\myshop.local\views\default\order.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57b5bdfb9a11d7_25644720',
+  'unifunc' => 'content_5937df082b1807_92925395',
   'file_dependency' => 
   array (
     '3a554c83dbb766b84e16a95e9737499be25625a0' => 
     array (
       0 => 'D:\\xampp\\htdocs\\myshop.local\\views\\default\\order.tpl',
-      1 => 1471528437,
+      1 => 1496833704,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57b5bdfb9a11d7_25644720 ($_smarty_tpl) {
+function content_5937df082b1807_92925395 ($_smarty_tpl) {
 ?>
 
 
@@ -149,7 +149,7 @@ $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'address', 0);?>
         </div>
         
         <div id="registerBox"> или <br />
-            <div class="menuCaption"> Регистрация полльзователя:</div>
+            <div class="menuCaption"> Регистрация пользователя:</div>
             email*:<br />
             <input type="text" id="email" name="email" value=""/><br />
             пароль*: <br />

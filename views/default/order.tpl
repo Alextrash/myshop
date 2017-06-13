@@ -81,7 +81,7 @@
         </div>
         
         <div id="registerBox"> или <br />
-            <div class="menuCaption"> Регистрация полльзователя:</div>
+            <div class="menuCaption"> Регистрация пользователя:</div>
             email*:<br />
             <input type="text" id="email" name="email" value=""/><br />
             пароль*: <br />

@@ -36,4 +36,15 @@
         <td><input type="button" onclick="updateUserData();" value="Сохранить изменения"/></td>
     </tr>
 </table>    
+    <h2>Orders:</h2>
+    {if ! $rsUserOrders}
+        NO ORDERS!
+        {else}
+            <table border = "1">
+                <tr>
+                    <th>#</th>
+                    <th></th>
+        {/else}
+            
+    {/if}
 </div>
