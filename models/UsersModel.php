@@ -152,4 +152,5 @@ function updateUserData($email, $name, $phone, $address, $pwd1, $pwd2, $curPwd, 
 function getCurUserOrders($smarty, $mysqli){
     $userId = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : 0;
     $rs = getOrdersWithProductsByUser($smarty, $userId, $mysqli);
+    return $rs;
 }

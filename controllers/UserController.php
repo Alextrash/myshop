@@ -110,12 +110,11 @@ function indexAction ($smarty, $mysqli){
     }
     
     $rsCategories = getAllMainCatsWithChildren($mysqli);    //все категории с дитями
-    $rsUserOrder = getCurUserOrders($smarty, $mysqli);
-    
-    d($rsUserOrder);
-    
+    $rsUserOrders = getCurUserOrders($smarty, $mysqli);
+      
     $smarty->assign('pageTitle', 'Главная страница');
     $smarty->assign('rsCategories', $rsCategories);
+    $smarty->assign('rsUserOrders', $rsUserOrders);
     
     loadTemplate($smarty, 'header');
     loadTemplate($smarty, 'user');

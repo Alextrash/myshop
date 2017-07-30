@@ -50,8 +50,65 @@ function getOrdersWithProductsByUser($smarty, $userId, $mysqli){
     $rs = $mysqli->query($sql);
     $smartyRs = array();
     while($row = $rs->fetch_assoc()){
-        $smartyRs[] = $row;
+        $rsChildren = getPurchaseForOrder($smarty, $row['id'], $mysqli);
+        
+        if($rsChildren){
+            $row['children'] = $rsChildren;
+            $smartyRs[] = $row;
+        }
     }
-    d($smartyRs);
     return $smartyRs;
+}
+
+function getOrders($mysqli){
+    $sql = "SELECT o.*, u.name, u.email, u.phone, u.address"
+            . " FROM `orders` AS `o`"
+            . " LEFT JOIN `users` as `u` ON u.id = o.user_id"
+            . " ORDER BY `id` DESC";
+    
+    $rs = $mysqli->query($sql);
+    
+    $smartyRs = array();
+    while($row = $rs->fetch_assoc()){
+        $rsChildren = getProductsForOrder($mysqli, $row['id']);
+        
+        if($rsChildren){
+            $row['children'] = $rsChildren;
+            $smartyRs[] = $row;
+        }
+    }
+    return $smartyRs;
+}
+
+function getProductsForOrder($mysqli, $orderId){
+    $sql = "SELECT * FROM `purchase` AS `pe`"
+            . " LEFT JOIN `products` AS `ps` "
+            . " ON pe.product_id = ps.id"
+            . " WHERE (`order_id` = '{$orderId}')";
+
+    $rs = $mysqli->query($sql);
+
+    return createSmartyRsArray($rs, $mysqli);
+}
+
+function updateOrderStatus($mysqli, $itemId, $status){
+    
+    $status = intval($status);
+    $sql = "UPDATE `orders`"
+            . " SET `status` = '{$status}'"
+            . " WHERE `id` = '{$itemId}'";
+    //d($sql);        
+    $rs = $mysqli->query($sql);
+    
+    return $rs;
+}
+
+function updateOrderDatePayment($mysqli, $itemId, $datePayment){
+    $sql = "UPDATE `orders`"
+            . " SET `date_payment` = '{$datePayment}'"
+            . " WHERE `id` = '{$itemId}'";
+    //d($sql);
+    $rs = $mysqli->query($sql);
+    
+    return $rs;
 }

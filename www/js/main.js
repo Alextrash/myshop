@@ -4,7 +4,6 @@
  * @returns {undefined}
  */
 function addToCart(itemId) {
-    console.log("js - addToCart()");
     $.ajax({
         type: 'POST',
         async: false,
@@ -22,7 +21,6 @@ function addToCart(itemId) {
 }
 
 function removeFromCart(itemId) {
-    console.log("js - removeFromCart()");
     $.ajax({
         type: 'POST',
         async: false,
@@ -165,4 +163,13 @@ function saveOrder(){
             }
         }
     });
+}
+
+function showProducts(id){
+    var objName = "#purchasesForOrderId_"+id;
+    if( $(objName).css('display') != 'table-row'){
+        $(objName).show();
+    } else {
+        $(objName).hide();
+    }
 }

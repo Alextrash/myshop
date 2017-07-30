@@ -14,3 +14,13 @@ function setPurchaseForOrder($orderId, $cart, $mysqli){
     
     return $rs;
 }
+
+function getPurchaseForOrder($smarty, $orderId, $mysqli){
+    $sql = "SELECT `pe`.*, `ps`.`name`
+            FROM purchase as `pe`
+            JOIN products as `ps` ON `pe`.`product_id` = `ps`.`id`
+            WHERE `pe`.`order_id` = {$orderId}";
+    
+    $rs = $mysqli->query($sql);
+    return createSmartyRsArray($rs, $mysqli);
+}

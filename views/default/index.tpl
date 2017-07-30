@@ -13,3 +13,17 @@
         <div style="clear: both;"></div>
     {/if}
 {/foreach}
+
+<div class="paginator">
+    {if $paginator['currentPage'] != 1}
+        <span class='p_prev'>
+            <a href="{$paginator['link']}{$paginator['currentPage'] - 1}"><--</a>
+        </span>
+    {/if}
+    
+    <strong> <span>{$paginator['currentPage']}</span></strong>
+    
+    {if $paginator['currentPage'] < $paginator['pageCnt']}
+        <span class="p_next"><a href="{$paginator['link']}{$paginator['currentPage'] + 1}">--></a></span>
+    {/if}
+</div>

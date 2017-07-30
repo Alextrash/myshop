@@ -14,9 +14,20 @@ include_once '../models/ProductsModel.php';
  *
  */
 function indexAction($smarty, $mysqli){
-
+    // + PAGINATION BLOCK
+    $paginator = array();
+    $paginator['perPage'] = 9;
+    $paginator['currentPage'] = isset($_GET['page']) ? $_GET['page'] : 1;
+    $paginator['offset'] = $paginator['currentPage'] * $paginator['perPage'] - $paginator['perPage'];
+    $paginator['link'] = '/index/?page=';
+    
+    list($rsProducts, $allCount) = getLastProducts($paginator['offset'], $paginator['perPage'], $mysqli);
+    $paginator['pageCnt'] = ceil($allCount / $paginator['perPage']);
+    
+    $smarty->assign('paginator', $paginator);
+    // - PAGINATION BLOCK
+    
     $rsCategories = getAllMainCatsWithChildren($mysqli);
-    $rsProducts = getLastProducts(16, $mysqli);
 
     $smarty->assign('pageTitle', 'Главная страница');
     $smarty->assign('rsCategories', $rsCategories);

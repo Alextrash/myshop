@@ -6,13 +6,16 @@ define('PathPostfix', 'Controller.php');
 
 //используемый графический шаблон (по умолчанию - default)
 $template = 'default';
+$templateAdmin = 'admin';
 
 //определяем пути для обращения к графическим шаблонам (файлы *.tpl)
 define('TemplatePrefix', "../views/{$template}/");
+define('TemplateAdminPrefix', "../views/{$templateAdmin}/");
 define('TemplatePostfix', '.tpl');
 
-//путь к шаблонам в веб-пространстве
+//путь к css-шаблонов в веб-пространстве
 define('TemplateWebPath', "/templates/{$template}/");
+define('TemplateAdminWebPath', "/templates/{$templateAdmin}/");
 
 //инициализация шаблонизатора Smarty
 //полный путь к Smarty.class.php

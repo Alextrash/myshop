@@ -10,7 +10,7 @@ body{
 #header{
     height: 70px;
     text-align: center;
-    background-color: blue;
+    background-color: #5882FA;
 }
 
 #leftColumn{
@@ -34,7 +34,7 @@ body{
 
 #footer{
     clear: both;
-    background-color: darkgreen;
+    background-color: #5882FA;
 }
 
 .menuCaption{
